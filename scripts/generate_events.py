@@ -13,8 +13,9 @@ def generate_event():
 		"event_timestamp" : datetime.utcnow().isoformat()
 		}
 if __name__ == "__main__":
-	events = [generate_event() for _ in range(100)]
-	
-	with open("data/events.json", "w") as f:
-		json.dump(events, f)
-	print("clickstreram events generated")
+    with open("data/events.json", "w") as f:
+        for _ in range(100):
+            event = generate_event()
+            f.write(json.dumps(event) + "\n")
+
+    print("Clickstream events generated (NDJSON format)")
